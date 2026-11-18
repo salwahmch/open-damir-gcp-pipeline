@@ -1,0 +1,158 @@
+version: 2
+
+models:
+  - name: fct_depenses_mensuelles
+    description: >
+      Fait agrégé des dépenses de santé par mois de traitement et par combinaison
+      d'axes (prestation, enveloppe, nature d'assurance, secteur, région, âge,
+      sexe, catégorie d'exécutant). Table incrémentale partitionnée par mois :
+      seuls les mois rechargés sont recalculés (insert_overwrite).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - mois_traitement
+              - code_prestation
+              - code_enveloppe
+              - code_nature_assurance
+              - code_secteur
+              - code_region
+              - code_tranche_age
+              - code_sexe
+              - code_categorie_executant
+    columns:
+      - name: mois_traitement
+        description: Mois de traitement (partition).
+        data_tests: [not_null]
+      - name: code_prestation
+        description: "{{ doc('code_prestation') }}"
+      - name: prefixe_prestation
+        description: Famille de prestation (2 premiers chiffres de PRS_NAT).
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('ref_poste_soins')
+                field: prefixe_prestation
+              config: {severity: warn}
+      - name: code_region
+        description: Région de résidence du bénéficiaire.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('ref_region')
+                field: code_region
+              config: {severity: warn}
+      - name: code_tranche_age
+        description: Tranche d'âge du bénéficiaire.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('ref_tranche_age')
+                field: code_tranche_age
+      - name: code_sexe
+        description: Sexe du bénéficiaire.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('ref_sexe')
+                field: code_sexe
+      - name: code_categorie_executant
+        description: Catégorie de l'exécutant.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('ref_categorie_executant')
+                field: code_categorie_executant
+              config: {severity: warn}
+      - name: nb_lignes_source
+        description: Nombre de lignes brutes agrégées.
+        data_tests: [not_null]
+      - name: montant_depense
+        description: "{{ doc('montant_depense') }}"
+      - name: montant_rembourse
+        description: "{{ doc('montant_rembourse') }}"
+      - name: derniere_ingestion
+        description: Horodatage d'ingestion le plus récent des lignes agrégées (pilote l'incrémental).
+        data_tests: [not_null]
+
+  - name: mart_depenses_postes
+    description: >
+      Table principale du tableau de bord Looker Studio : dépenses et
+      remboursements par mois, poste de soins, région, tranche d'âge et sexe,
+      avec libellés.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - mois_traitement
+              - poste_soins
+              - code_region
+              - code_tranche_age
+              - code_sexe
+    columns:
+      - name: mois_traitement
+        data_tests: [not_null]
+      - name: grand_poste
+        description: Regroupement de haut niveau (soins de ville, établissements, prestations en espèces...).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Soins de ville', 'Établissements', 'Prestations en espèces',
+                         'Prévention', 'Autres prestations', 'Non classé']
+      - name: poste_soins
+        description: Poste de soins issu du seed ref_poste_soins.
+        data_tests: [not_null]
+      - name: region
+        description: Libellé de la région de résidence du bénéficiaire.
+        data_tests: [not_null]
+      - name: code_iso_3166_2
+        description: Code ISO de la région, utilisé par la carte géographique de Looker Studio.
+      - name: tranche_age
+        data_tests: [not_null]
+      - name: tranche_age_ordre
+        description: Ordre d'affichage des tranches d'âge.
+      - name: sexe
+        data_tests: [not_null]
+      - name: montant_depense
+        description: "{{ doc('montant_depense') }}"
+      - name: montant_rembourse
+        description: "{{ doc('montant_rembourse') }}"
+      - name: reste_a_charge_amo
+        description: Dépense non remboursée par l'Assurance Maladie (avant complémentaire).
+      - name: taux_prise_en_charge
+        description: "{{ doc('taux_prise_en_charge') }}"
+
+  - name: mart_kpi_mensuels
+    description: Indicateurs nationaux par mois et grand poste, avec évolution mensuelle.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [mois_traitement, grand_poste]
+    columns:
+      - name: mois_traitement
+        data_tests: [not_null]
+      - name: grand_poste
+        data_tests: [not_null]
+      - name: taux_prise_en_charge
+        description: "{{ doc('taux_prise_en_charge') }}"
+      - name: part_depense_du_mois
+        description: Part du grand poste dans la dépense totale du mois.
+      - name: evolution_mensuelle
+        description: Variation de la dépense par rapport au mois précédent (NULL pour le premier mois).
+
+  - name: mart_top_prestations
+    description: Dépenses par nature de prestation, avec rang dans le mois et dans le poste.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [mois_traitement, code_prestation]
+    columns:
+      - name: mois_traitement
+        data_tests: [not_null]
+      - name: libelle_prestation
+        data_tests: [not_null]
+      - name: rang_dans_le_mois
+        description: 1 = prestation la plus coûteuse du mois.
+      - name: depense_moyenne_par_acte
+        description: Dépense divisée par le nombre d'actes.

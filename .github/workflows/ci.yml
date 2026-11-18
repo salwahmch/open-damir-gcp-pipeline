@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 7 20 * *"  # contrôle qualité mensuel des données, après le chargement du 15
+  workflow_dispatch:
+
+jobs:
+  python:
+    name: Lint et tests Python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check .
+      - run: pytest -q tests/test_ingestion.py
+
+  airflow-dag:
+    name: Import du DAG Airflow
+    runs-on: ubuntu-latest
+    env:
+      AIRFLOW_VERSION: "3.4.0"
+      PYTHON_VERSION: "3.12"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Installer Airflow (avec les contraintes officielles)
+        run: |
+          pip install "apache-airflow==${AIRFLOW_VERSION}" pytest pandas pyarrow requests \
+            --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+      - run: PYTHONPATH=. pytest -q tests/test_dag.py
+
+  dbt:
+    name: dbt (parse, puis tests sur BigQuery si le secret est configuré)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dbt
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID || 'ci-placeholder' }}
+      BQ_LOCATION: EU
+      DBT_TARGET: ci
+      HAS_GCP_KEY: ${{ secrets.GCP_SA_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install "dbt-bigquery~=1.12"
+      - run: dbt deps --profiles-dir .
+      - name: Vérifier la syntaxe du projet
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /dev/null  # parse ne se connecte pas à BigQuery
+        run: dbt parse --profiles-dir .
+      - name: Authentification Google Cloud
+        if: env.HAS_GCP_KEY == 'true' && github.event_name != 'pull_request'
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Tests de qualité des données (lecture seule)
+        if: env.HAS_GCP_KEY == 'true' && github.event_name != 'pull_request'
+        run: |
+          dbt source freshness --profiles-dir .
+          dbt test --profiles-dir .

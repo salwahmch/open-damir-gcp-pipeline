@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+  - name: tableau_de_bord_depenses_sante
+    label: Tableau de bord - dépenses de santé (Looker Studio)
+    type: dashboard
+    maturity: medium
+    url: https://lookerstudio.google.com/  # remplacer par le lien public du rapport
+    description: >
+      Dépenses et remboursements de l'Assurance Maladie par poste de soins,
+      région, âge et sexe, et évolution mensuelle.
+    depends_on:
+      - ref('mart_depenses_postes')
+      - ref('mart_kpi_mensuels')
+      - ref('mart_top_prestations')
+    owner:
+      name: Salwa Hammouch

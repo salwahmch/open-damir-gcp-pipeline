@@ -1,0 +1,21 @@
+code_region,libelle_region,code_iso_3166_2,est_outre_mer
+1,Guadeloupe,FR-971,true
+2,Martinique,FR-972,true
+3,Guyane,FR-973,true
+4,La Réunion,FR-974,true
+6,Mayotte,FR-976,true
+11,Île-de-France,FR-IDF,false
+24,Centre-Val de Loire,FR-CVL,false
+27,Bourgogne-Franche-Comté,FR-BFC,false
+28,Normandie,FR-NOR,false
+32,Hauts-de-France,FR-HDF,false
+44,Grand Est,FR-GES,false
+52,Pays de la Loire,FR-PDL,false
+53,Bretagne,FR-BRE,false
+75,Nouvelle-Aquitaine,FR-NAQ,false
+76,Occitanie,FR-OCC,false
+84,Auvergne-Rhône-Alpes,FR-ARA,false
+93,Provence-Alpes-Côte d'Azur,FR-PAC,false
+94,Corse,FR-20R,false
+0,Région inconnue,,false
+99,Région inconnue ou étranger,,false

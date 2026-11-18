@@ -1,0 +1,601 @@
+code_prestation,libelle_prestation
+1111,Consultation cotee c
+1112,Consultation cotee cs
+1113,Consultation cotee cnp
+1114,Consultation specifique cardiologie
+1115,Consultation bilan
+1116,Majoration forfaitaire transitoire
+1117,Consultation des specialistes cotee c2
+1118,"Consultation des psychiatres cotee c2,5"
+1119,Majoration transitoire specifique
+1121,Honoraire de surveillance
+1122,Examen special (protocole)
+1123,Suite d examen de sante
+1124,Remuneration medecin traitant par patient en ald
+1125,Majoration de coordination des generalistes
+1126,Majoration de coordination specialistes
+1127,Majoration de coordination cardiologues
+1129,Majoration forfaitaire transitoire (pour les moins de 16 ans)
+1130,Forfait medecin traitant
+1131,Majoration consultation appareillage
+1132,Majoration consultation endocrino
+1133,Majoration generaliste enfant
+1134,Majoration premiere consultation famille
+1135,Majoration consultation annuelle famille
+1136,Majoration annuelle de synthese
+1137,Majoration nourrisson
+1138,Remuneration additionnelle capi
+1139,Remuneration des adherents au capi
+1140,Consultation specifique de depistage
+1141,Majoration pediatre enfant
+1142,Remuneration adhesion sophia (soins de ville)
+1143,Remuneration renouvellement sophia (soins de ville)
+1145,Remuneration objectif medecin
+1146,Remuneration objectif medecin complement
+1148,Remuneration forfaitaire par consultation pour le suivi des personnes agees
+1150,Remuneration praticiens territoriaux de medecine generale
+1152,Majoration suivi des enfants grands prematures ou atteints de pathologie congenitale grave
+1153,Majoration consultation pour insuffisant cardiaque apres hospitalisation
+1154,Majoration consultation suivi apres hospitalisation patients a forte comorbidite
+1211,Visite cotee v
+1212,Visite cotee vs
+1213,Visite cotee vnp
+1214,Visite longue et complexe
+1221,Visite d urgence
+1222,Visite urgence vu/mu
+1224,Md (criteres medicaux)
+1225,Mde ( criteres environnementaux)
+1226,Md de nuit
+1227,Md de milieu nuit
+1228,Md de dimanche et jour feries
+1232,Mde dimanche et jour feries
+1311,Actes en k chirurgical
+1312,Actes de specialite en k
+1313,Actes en k d urgence
+1316,Actes de diagnostic cotes ke
+1317,Actes en kcc: actes specifiques des chirurgiens
+1318,Acte de phoniatrie par medecin
+1321,Acte de chirurgie ccam
+1322,Acte d'obstetrique ccam
+1323,Acte d'anesthesie ccam
+1324,Acte d'echographie ccam
+1331,Actes de radiologie
+1332,Actes de radiologie nucleaire
+1333,Majoration pour produit radiopharmaceutique
+1335,Acte de radiologie mammographie
+1336,Acte de radiologie mammographie depistage
+1341,Actes d anatomo-cyto-pathologie/medecins
+1342,Majoration anatomo-cyto-pathologie
+1351,ACTE D'IMAGERIE (hors ECHOGRAPHIE) CCAM
+1352,ACTES TECHNIQUES MEDICAUX (hors IMAGERIE) CCAM
+1361,Videocapsule
+1411,Actes en scm (et spa pour la crpcen)
+1421,Actes de prothese dentaire pratiques par le medecin
+1422,Traitements d orthodontie pratiques par le medecin (et eos pour la crpcen)
+1423,Actes de prothese dentaire pratiques par le chirurgien-dentiste
+1424,Traitements d orthodontie pratiques par le chirurgien-dentiste (et eto pour la crpcen)
+1425,Complement at 150% dentaire
+1431,Actes en d (et occ pour la crpcen)
+1432,Actes en dc
+1433,Actes en sc (et sca pour la crpcen)
+1461,Actes divers prothese dentaire ccam
+1521,Majoration pour garde
+1522,Majoration astreinte
+1602,Forfait contrat de bonnes pratiques
+1606,Forfait contrat de bonnes pratiques
+1608,Forfait contrat de sante publique biologistes
+1617,Redevance chef de clinique
+1621,Contrat d'amelioration de l'organisation des soins - transports
+1622,Contrat d'amelioration de l'organisation des soins - pharmacie/lpp
+1701,Cds medical optant forf debut
+1702,Cds medical optant forf fin
+1703,Cds medical optant forftacite
+1704,Cds dentaire optant forf initial
+1705,Cds dentaire optant forf suivi
+1706,Cds dentaire optant forf final
+1707,Cds infirmier optant forf debut
+1708,Cds infirmier optant forf fin
+1811,Ik plaine
+1812,Ik montagne
+1813,Ik pied ski
+1821,"Id paris lyon marseille, +100.000 ha, -100.000 ha"
+1841,Indemnites forfaitaires de deplacement
+1842,Indemnites forfaitaires de deplacement des auxiliaires medicaux et assimiles
+1843,Indemnites forfaitaires de deplacement mk orthopedique et rhumatologique
+1844,Indemnites forfaitaires de deplacement mk rhumatismale
+1845,Indemnites forfaitaires de deplacement mk neurologique
+1846,Indemnites forfaitaires de deplacement mk pneumologie
+1847,Indemnites forfaitaires de deplacement de sortie
+1911,Actes des sages-femmes
+1912,Honoraires non ventilables individualises
+1913,Majoration milieu de nuit
+1914,Forfait pediatrique
+1916,Remuneration pour garde ets prives
+1917,Remuneration pour astreinte ets prives
+1918,Majoration d'urgence
+1922,Consultation
+1923,Examen de suivi post natal
+1931,Majoration nourrisson pediatre
+1932,Majoration nourrisson generaliste
+1933,Majoration consultation regulee de nuit
+1934,Majoration consultation regulee milieu de nuit
+1935,"Majoration consultation regulee dimanche, jours feries et assimiles"
+1936,Majoration visite regulee de nuit
+1937,Majoration visite regulee milieu de nuit
+1938,"Majoration visite regulee de dimanche, jours feries et assimiles"
+1941,Majoration consultation regulee samedi apres midi
+1942,Majoration visite regulee samedi apres midi
+1951,Participation forfaitaire hors tiers payant
+1952,Participation forfaitaire tiers payant
+1954,Participation assure consultations et soins externes (cmu + ame)
+1955,Participation assure consultations et soins externes (regime local)
+1956,Participation assure en ambulatoire
+1961,Supplement derogatoire smg sur acte professionnel remboursable (cnmss)
+1971,Franchise hors tiers payant sur medicament
+1972,Franchise tiers payant sur medicament
+1973,Franchise hors tiers payant sur transport
+1974,Franchise tiers payant sur transport
+1975,Franchise hors tiers payant acte d'auxiliaire medicaux
+1976,Franchise tiers payant acte d'auxiliaire medicaux
+1977,Participation assure hors tiers payant transmise sans acte de reference ou type de franchises
+1978,Participation assure en tiers payant transmise sans acte de reference ou type de franchises
+1981,Forfait ivg honoraires de ville
+1991,Remuneration regulation
+1992,Permanence remuneration de nuit
+1993,Permanence remuneration milieu de nuit
+1994,Permanence remuneration dimanche et ferie
+1995,Permanence remuneration total
+1996,Permanence remuneration samedi matin
+1997,Permanence remuneration samedi apres midi
+2111,Frais d hebergement et environnement en ghs
+2112,Frais de sejour supplementaire au ghs
+2113,Groupe homogene de tarifs
+2114,Supplement soins particulierement couteux (arrete du 29/06/1978)
+2116,Supplement neonatologie 1
+2117,Supplement neonatologie 2
+2120,Differentiel tarifaire clinique
+2121,Hemodialyse en centre ou en unite de dialyse medicalisee
+2129,Forfait d'hemodialyse en centre
+2132,Forfait d hemodialyse en unite de dialyse medicalisee
+2133,Dialyse tierce personne
+2134,Forfait d autodialyse simple
+2135,Forfait d autodialyse assistee
+2136,Forfait d hemodialyse a domicile
+2137,Forfait de dialyse peritoneale automatisee (dpa)
+2138,Forfait de dialyse peritoneale continue ambulatoire (dpca)
+2139,Forfait d entrainement a l hemodialyse a domicile et autodialyse
+2141,Frais de chambre particuliere pour convenance personnelle
+2143,Ff d entrainement a la dialyse peritoneale automatisee a domicile
+2144,Ff d entrainement a la dialyse peritoneale continue ambulatoire a domicile
+2145,Forfait de dialyse peritoneale automatise pour hospitalisation de 3 a 6 jours
+2146,Forfait de dialyse peritoneale continue ambulatoire pour hospitalisation de 3 a 6 jours
+2150,Videocapsule
+2151,Supplement reanimation
+2152,Supplement surveillance continue
+2153,Forfait soins intensifs
+2154,Reanimation pediatrique
+2155,Forfait environnement hospitalier 1
+2156,Forfait environnement hospitalier 2
+2157,Forfait environnement hospitalier 3
+2158,Forfait environnement hospitalier 4
+2159,Forfait de securite dermatologique
+2161,Forfait mission d interet general d aide a la contractualisation
+2163,Supplement journalier dialyse peritoneale
+2164,Administration de produits et prestations en environnement hospitalier
+2170,Fir ets prives
+2184,Coordination prelevement d organes
+2195,Supplement antepartum
+2204,Camsp: centre action medico-sociale precoce
+2211,Frais de sejour
+2212,Majoration pmsi
+2213,Frais de sejour ime
+2221,Supplement chambre particuliere
+2222,Supplement pour surveillance du malade
+2231,Forfait pharmaceutique
+2232,Forfait transplantation d organe
+2234,Forfait d entree
+2235,Forfait d activite non programmee
+2236,Forfait consommable cardiologie
+2237,Part complementaire aide medicale etat (regularisation cmu complementaire)
+2238,Forfait d accueil et de traitement des urgences
+2239,Forfait annuel d urgence
+2240,Tarif journalier complementaire
+2241,Frais de salle d operation
+2247,Forfait psychiatrie de securite - hospitalisation avec hebergement
+2250,Forfait journalier aide medicale (regularisation cmu complementaire)
+2251,Forfait journalier
+2252,Forfait journalier de sortie
+2258,Forfait de soins journalier
+2261,Forfait accueil du patient n 1
+2282,Participation assure transitoire
+2283,Participation assure hospitalisation publique (cmu + ame)
+2284,Participation assure hospitalisation publique (regime local)
+2285,Participation assure sur sejour
+2321,Forfait - long sejour personnes agees
+2331,Radiumtherapie et chimiotherapie
+2332,Readaptation fonctionnelle
+2333,Reeducation professionnelle
+2334,Seance d hemodialyse
+2335,Forfait de pansement
+2336,Forfait pour consultation en centre medico-psycho pedagogique
+2337,Seance de diagnostic
+2338,Forfait petit materiel
+2339,Autres forfaits divers (y compris nutrition enterale a domicile)
+2342,Forfait pour garde de debut de nuit en etablis. prive
+2343,Forfait pour garde de nuit ou samedi apres midi en etablis. prive
+2344,Forfait de garde nuit et ferie en etablis. prive
+2345,Forfait pour astreinte de debut de nuit en etablis. prive
+2346,Forfait pour astreinte de nuit ou samedi apres midi en etablis. prive
+2347,Forfait d'astreinte nuit et ferie en etablis. prive
+2351,Forfait technique normal irmn -scanners
+2352,Forfait technique reduit irmn -scanners
+2353,FORFAIT TECHNIQUE SCANNER (SPP expo amiante)
+2354,Forfait technique tomographie
+2380,"FORFAIT PSYCHIATRIE SEANCE COLL, 1 INTERVENANT 3 à 4H"
+2381,"FORFAIT PSYCHIATRIE SEANCE IND, 1 INTERVENANT 3 à 4H"
+2382,"FORFAIT PSYCHIATRIE SEANCE COLL, 2 INTERVENANTS 3 à 4H"
+2383,FORFAIT PSYCHIATRIE SEANCE IND. 2 INTERVENANTS 3 à 4H
+2384,"FORFAIT PSYCHIATRIE SEANCE COLL, 1 INTERVENANT 6 à 8H"
+2385,FORFAIT PSYCHIATRIE SEANCE IND. 1 INTERVENANT 6 à 8H
+2386,"FORFAIT PSYCHIATRIE SEANCE COLL, 2 INTERVENANT 6 à 8H"
+2387,FORFAIT PSYCHIATRIE SEANCE IND. 2 INTERVENANTS 6 à 8H
+2388,Forfait psychiatrie de securite hospitalisation sans hebergement
+2389,Prise en charge de nuit pour une duree entre 8 et 12h
+2391,Forfait technique tarif reduit n°2
+2392,Forfait technique tarif reduit n°3
+2411,Intervention ivg
+2412,Anesthesie generale
+2413,Investigations biologiques
+2414,Consultation ivg
+2415,Medicaments: mifeygine
+2416,Medicaments: prostaglandines
+2417,Verification biologique
+2418,Verification echographique
+2419,Forfait intervention ambulatoire
+2420,Forfait intervention duree < ou = 12 h prive medic
+2421,Intervention + anesthesie ambulatoire
+2422,Forfait pour ivg medicamenteuse
+2423,Forfait intervention avec nuitee
+2424,Intervention + anesthesie avec nuitee
+2425,Forfait ivg pour 24h supplementaires - secteur prive/secteur public
+2426,Consultation ivg specialiste
+2501,Forfait fir pdses publique
+2502,Forfait fir centre depistage anonyme et gratuit
+2503,Forfait fir centre perinataux de proximite
+2504,Forfait fir education therapeutique
+3111,Actes en ami
+3112,"Actes infirmiers de soins (ami3-ami13,ami16)"
+3113,Actes infirmiers des sages-femmes (sfi)
+3115,Demarche infirmier
+3116,Majoration pour acte unique
+3117,Majoration de coordination et d'environnement de soin infirmier
+3121,Actes amc
+3122,Actes en amk
+3125,Actes de kinesitherapie osteo-articulaire
+3131,Actes des pedicures
+3132,Actes des orthophonistes
+3133,Actes des orthoptistes
+3134,Acte de pedicure-podologue (diabetique)
+3211,Actes de biologie
+3221,Prelevement autre que sanguin par un directeur de laboratoire
+3222,Prelevement sanguin par un directeur de laboratoire
+3223,Prelevement sanguin par un technicien de laboratoire
+3225,Prelevement par ponction veineuse directe pour un medecin biologiste
+3311,Pharmacie 100%
+3312,Pharmacie ph4
+3313,Pharmacie 65%
+3314,Hormone de croissance
+3315,Medicaments antiretroviraux
+3316,Medicaments d exception
+3317,Pharmacie hospitaliere a 100%
+3318,Pharmacie hospitaliere a 65%
+3319,Pharmacie hospitaliere
+3320,Pharmacie hospitaliere en sus du ghs
+3322,Majoration pour achat hors heures ouvrables
+3323,Copie d ordonnance
+3324,Ecart medicament indemnisable
+3325,Majoration pharmacie des iles
+3326,Preparation magistrale remboursable
+3327,Preparation magistrale homeopathique
+3328,Medicaments homeopathiques unitaires
+3329,Forfait medicament ivg ville
+3331,Vaccin anti-grippe
+3332,Vaccin ror
+3341,Pharmacie 15%
+3342,Preparation magistrale allopathique 15 %
+3343,Preparation magistrale allopathique
+3351,Medicament avec une autorisation temporaire d'utilisation
+3352,Preparation magistrale hospitalire
+3353,Preparation hospitaliere
+3354,Medicament avec autorisation d'importation
+3355,Marge forfaitaire (medicaments hospitaliers)
+3356,Pharmacie hospitaliere derogatoire
+3357,Pharmacie hospitaliere mmh
+3361,Garde pharmacie nuit
+3362,Garde pharmacie ferie
+3363,Garde pharmacie dimanche
+3374,Kit anti-grippe
+3381,Preparation pharmaceutique individualisee (allergenes)
+3392,Remu objectif - pharmacien complement
+3411,"Sang,plasma et leurs derives"
+3412,Transport du produit
+3413,Lait humain
+3414,Autres produits d origine humaine
+3511,"Appareils d assistance respiratoire,oxygenotherapie a domicile"
+3512,Autres materiels pour traitements a domicile (chap. 1)
+3513,Materiels et appareils de contention et de maintien (chap. 2)
+3514,Materiels et appareils pour traitements divers (chap. 3)
+3515,Articles de pansements (chap. 4)
+3516,Nutriments pour intolerants au gluten (chap. 3)
+3517,Aliments destines a des fins medicales
+3518,Appareil generateur d aerosol
+3521,Ortheses (petit appareillage) (chap. 1)
+3522,Divers ortheses
+3531,Optique medicale proprement dit
+3532,Monture/lunette pour enfant de - de 18 ans crpcen (hors codage lpp)
+3533,Verres
+3534,Reparation
+3535,Lentilles
+3536,Verres unifocaux op1 (cmu)
+3537,Verres unifocaux op2 (cmu)
+3538,Verres unifocaux op3 (cmu)
+3539,Verres unifocaux op4 (cmu)
+3541,Appareils electroniques de surdite (chap 3.)
+3542,Protheses externes non orthopediques (chap. 4)
+3543,Protheses oculaires et faciales (chap. 5)
+3544,Chaussures orthopediques (chap. 6)
+3545,Orthoprotheses (chap 7.)
+3547,Appareils electroniques de surdite (consommables y.c. piles)
+3551,"Implant interne (chap. 1, 2 et 3)"
+3552,Implant mu par electricite (chap. 4)
+3561,Vehicules pour handicapes physiques
+3572,Ecart tips indemnisable
+3574,Dispositif medical (prise en charge exceptionnelle)
+3575,Complement at 150% lpp
+3581,Verres unifocaux op5(cmu)
+3582,Verres unifocaux op6(cmu)
+3583,Monture (cmu)
+3591,Prise en charge derogatoire lpp
+4111,Forfait de surveillance medicale 1er handicap
+4112,Forfait de surveillance medicale reduit 2eme handicap
+4113,Pratiques medicales complementaires cotees en k
+4114,Complement surveillance thermale
+4131,Frais de transport - cures thermales
+4132,Frais d hotel - cures thermales
+4141,Forfait thermal 1
+4142,Forfait thermal 2 avec kinesitehrapie
+4143,Forfait thermal 2eme orientation
+4144,Forfait thermal 3 avec 9 seances kinesitherapie
+4145,Forfait thermal 72 seances avec kine
+4151,Forfait thermal 18 seances collectives
+4152,Forfait thermal 18 seances individuelles
+4153,Forfait thermal 9 seances collectives
+4154,Forfait thermal 9 seances individuelles
+4211,Services mobiles d urgence et de reanimation (smur)
+4212,Ambulances agreees
+4213,Vehicules sanitaires legers (vsl)
+4214,Taxis
+4215,Vehicules personnels
+4216,Transport reeducation professionnel
+4219,Autres modes de transport
+4221,Ambulance agreee de garde
+4222,Indemnite de garde ambulanciere
+4227,Contrat d'amelioration de la qualite et de la coordination des soins
+4228,Contrat d'amelioration de la qualite et de la coordination des soins complement
+4315,Autopsie
+4316,Expertise
+4317,Honraire comite regional reconnaisance mp
+4318,Deplacement comite regional reconnaissance mp
+4321,Frais funeraires
+4322,Transport du corps
+4323,Indemnite allouee en reparation des prejudices extra-patrimomiaux
+4325,Indemnite complementaire pour reeducation professionnelle
+4326,Pretium pulchritudinis
+4327,Pretium sexuale
+4328,Prejudice d'agrement
+4329,Prejudice perte ou diminution promotion professionnelle
+4330,Prejudices extra patrimoniaux - hors iv
+4331,"Remboursements de soins a l etranger (et1 a et6 et et8 a et9, etb eta, eth, ett, etp, etx )"
+4332,Prejudice amiante
+4339,Remboursement de soins
+4341,Frais de tutelle
+4353,"Indemnite pour perte de salaire (maladie, at)"
+4361,Facturation feuille de soins (pour information)
+4370,Forfait d'incitation forfaitaire a la numerisation et a la transmission
+4371,Forfait de soins medicalises (regime des ministres des cultes et des membres congr. et coll.religieuses)
+4372,Forfait repos convalescence (regime des ministres des cultes et des membres congr. et coll.religieuses)
+4375,Aide outil de mise a jour
+4376,Ligne telephonique dediee
+4377,Pied support materiel
+4378,Supplement officine dom
+4396,Prime responsabilite specialiste
+4397,Prime accreditation specialiste
+4411,Aide sociale
+4413,Dispensaires antiveneriens
+4415,Etablissements de lutte contre la tuberculose
+4416,Protection maternelle et infantile
+4417,Autres participations forfaitaires non individualisees
+4501,Controles medicaux (clercs et employes de notaires)
+4511,Capital deces
+5101,Forfait verres unifocaux op1
+5102,Forfait verres unifocaux op2
+5103,Forfait verres unifocaux op3
+5104,Forfait verres unifocaux op4
+5105,Forfait verres unifocaux op5
+5106,Forfait verres unifocaux op6
+5107,Forfait monture cmu
+5201,Forfait prothese dentaire adjointe
+5202,Forfait reparation prothese adjointe
+5203,Forfait prothese dentaire conjointe
+5204,Forfait orthodontie
+5205,Forfait prothese conjointe (cmu hors panier de soins)
+5206,Forfait orthodontique (cmu hors panier de soins)
+5401,Forfait audio-prothese
+6011,Carence -
+6012,Carence +
+6013,Ij carence (crpcen)
+6014,Complement ij >plafond (crpcen)
+6110,Ij normales + 6mois
+6111,Ij normales -3 mois
+6112,Ij normales +3mois
+6113,Ij reduites -3mois
+6114,Ij reduites +3mois
+6115,Ij majorees -3mois
+6116,Ij majorees +3mois
+6117,"Ij partielle, perte de salaire -3mois"
+6118,"Ij partielle, perte de salaire +3mois"
+6119,Ij majorees + 6 mois
+6120,Indemnite temporaire d'inaptitude at/mp
+6121,Ij prenatales
+6122,Ij postnatales
+6123,Ij en cas d adoption
+6124,Ij conge supplementaire prema
+6131,Ij normales pour cure thermale
+6132,Ij majorees pour cure thermale
+6133,Ij reduites pour cure thermale
+6212,Ij conge maternite au pere
+6213,Indemnite de remplacement paternite
+6221,Allocation repos maternel normal
+6222,Allocation repos maternel adoption
+6231,Indemnite maternite normale
+6232,Indemnite maternite en cas d adoption
+6233,Indemnite maternite en cas d etat pathologique
+6234,Indemnite maternite en cas de naissances multiples
+6235,Indemnite de remplacement conjointe collaboratrice
+6236,Indemnite paternite pamc
+6241,Allocation accompagnement fin de vie cessation activite temps plein
+6242,Allocation accompagnement fin de vie cessation activite reduite
+6251,Allocation nuit normale - 3 mois
+6252,Allocation nuit normale + 3 mois
+6257,Allocation exposition normale - 3 mois
+6258,Allocation exposition normale + 3 mois
+7111,Pension invalidite avantages de base
+7112,Pension invalidite allocations supplementaires
+7113,Pension invalidite majorations pour assistance d une tierce personne
+8111,Rentes de victime
+8112,Majorations pour assistance d une tierce personne
+8113,Rentes de conjoint survivant
+8114,Rentes de reversion
+8115,Rentes d orphelin
+8116,Rentes d ascendant
+8117,Majoration faute inexcusable rente ascendant
+8118,Majoration faute inexcusable rente victime
+8119,Majoration faute inexcusable rente conjoint
+8120,Majoration faute inexcusable rente orphelin
+8222,Rachat obligatoire
+8224,Rachat facultatif partiel
+8225,Transfert de capitaux
+8226,Indemnite en capital accident du travail
+8227,Majoration faute inexcusable indemnite en capital
+9111,Complement ticket moderateur
+9112,Complement frais de transport et de sejour
+9113,Frais occasionne par le don d organes
+9114,Complement aux frais d hospitalisation de la mere qui allaite son enfant
+9116,Indemnites journalieres maternite pour certaines categories d assures
+9118,Frais funeraires
+9119,Complement pour cure thermale
+9122,Allocation deces
+9123,Complement maladies chroniques et maintien a domicile
+9129,Indemnites complementaires en reeducation professionnelle
+9131,Indemnite de perte de salaire y compris dialyse a domicile
+9132,Frais de deplacement en cure thermale
+9133,Frais d hebergement en cure thermale
+9134,Prime de fin de reeducation professionnelle
+9135,Aide financiere exceptionnelle (secours)
+9151,Plan seguin
+9152,Plan evin
+9163,Centre examen sante saisie manuelle
+9191,Ticket moderateur - prevention bucco-dentaire
+9211,Vaccin (militaires)
+9221,Test de depistage rapide (fournisseur)
+9311,Depistage du cancer colo-rectal
+9411,Consultation hygiene bucco-dentaire
+9421,Prevention bucco-dentaire: consultation
+9422,Prevention bucco-dentaire: radio deux cliches
+9423,Prevention bucco-dentaire: radio quatre cliches
+9429,Campagne bucco dentaire mocales
+9431,Prevention entretien de sante
+9511,Examen et bilan de sante
+9521,Actes de prevention
+9566,Traitement nicotinique de substitution
+9569,Retour dom. insuffisant cardiaque
+9701,"Complement d action sociale appareil de surdite (clercs et employes de notaires, port autonome de bordeaux)"
+9704,"Complement d action sociale protheses dentaires (clercs et employes de notaires, port autonome de bordeaux)"
+9705,Complement d action sociale dentaire alsace moselle (clercs et employes de notaires)
+9706,Complement d action sociale optique (clercs et employes de notaires)
+9707,"Complement d action sociale optique, enfant de moins de 16 ans (clercs et employes de notaires)"
+9709,"Complement d action sociale verres (clercs et employes de notaires, port autonome de bordeaux)"
+9711,Prime de layette (clercs et employes de notaires)
+9713,Aide aux sejours des enfants (clercs et employes de notaires)
+9714,Allocation vacances (clercs et employes de notaires)
+9715,Aides financieres individuelles optique
+9716,Action sociale dentaire
+9717,Action sociale auditif
+9719,Aides financieres individuelles hospitalisation
+9721,Aides financieres individuelles difficultes financieres
+9722,Aides financieres individuelles autres
+9724,Aide a la scolarite (crpcen)
+9725,Accueil jeune enfant (crpcen)
+9731,Complement a l'acs
+9732,Aide a l'acquisition d'une couverture complementaire pour les victimes du seuil acs
+9741,Aides au logement
+9742,Aide a la communication hors auditif
+9743,Aides a la deambulation et au transport
+9744,Autres types d aides
+9751,Fournitures et accessoires non remboursables
+9752,Gardes malades a domicile
+9761,Aides financieres individuelles orthodontie
+9762,Aides financieres individuelles pharmacie/lpp
+9763,Aides financieres a caractere social affectees au logement
+9764,Aides financieres a caractere social affectees aux besoins alimentaires et vestimentaires
+9766,Aides financieres a caractere social affectees aux reglements d'impots taxes et primes
+9767,Aides financieres a caractere social d'attente de versement de revenus de substitution
+9768,Aides financieres a caractere social affectees aux frais d'obseques
+9769,Aides financieres a caractere social palliant l'absence de revenus
+9771,Aides protheses auditives
+9772,Aides menageres
+9773,Aides menageres sortie d'hospitalisation coordonnee
+9774,Actes fournitures sortie d'hospitalisation coordonnee
+9775,Aides menageres programme d'accompagnement apres intervention orthopedique
+9776,Actes fournitures programme d'accompagnement apres intervention orthopedique
+9777,Pharmacie non remboursable soins palliatifs
+9778,Bilans de competences et reorientation professionnelle
+9802,Codes mis a la disposition de la sncf
+9803,Codes mis a la disposition de la sncf
+9808,Codes mis a la disposition de la sncf
+9809,Codes mis a la disposition de la sncf
+9810,Codes mis a la disposition de la sncf
+9813,Codes mis a la disposition de la sncf
+9814,Codes mis a la disposition de la sncf
+9815,Codes mis a la disposition de la sncf
+9816,Codes mis a la disposition de la sncf
+9841,Codes mis a la disposition de la sncf
+9843,Codes mis a la disposition de la sncf
+9851,Codes mis a la disposition de la sncf
+9852,Codes mis a la disposition de la sncf
+9853,Codes mis a la disposition de la sncf
+9854,Codes mis a la disposition de la sncf
+9855,Codes mis a la disposition de la sncf
+9856,Codes mis a la disposition de la sncf
+9857,Codes mis a la disposition de la sncf
+9858,Codes mis a la disposition de la sncf
+9859,Codes mis a la disposition de la sncf
+9860,Codes mis a la disposition de la sncf
+9861,Codes mis a la disposition de la sncf
+9862,Codes mis a la disposition de la sncf
+9863,Codes mis a la disposition de la sncf
+9864,Codes mis a la disposition de la sncf
+9865,Codes mis a la disposition de la sncf
+9867,Codes mis a la disposition de la sncf
+9871,Codes mis a la disposition de la sncf
+9873,Codes mis a la disposition de la sncf
+9875,Codes mis a la disposition de la sncf
+9890,Codes mis a la disposition de la sncf
+9891,Codes mis a la disposition de la sncf
+9894,Codes mis a la disposition de la sncf
+9895,Codes mis a la disposition de la sncf
+9896,Codes mis a la disposition de la sncf
+9902,Aide sociale (militaires)
+9911,Aide menagere
+9912,Aide menagere familiale (militaires)
+9999,Valeur inconnue

@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: stg_damir__prestations
+    description: >
+      Lignes Open DAMIR nettoyées : colonnes renommées en français, codes
+      normalisés en texte, montants convertis en NUMERIC (virgule décimale gérée).
+      Vue sans stockage propre.
+    columns:
+      - name: mois_traitement
+        description: Mois de traitement du remboursement (FLX_ANN_MOI), 1er jour du mois.
+        data_tests:
+          - not_null
+      - name: annee_soins
+        description: Année des soins (SOI_ANN).
+      - name: mois_soins
+        description: Mois des soins (SOI_MOI).
+      - name: mois_soins_date
+        description: Mois des soins sous forme de date (1er jour du mois).
+      - name: code_prestation
+        description: "{{ doc('code_prestation') }}"
+        data_tests:
+          - not_null:
+              config: {severity: warn}
+      - name: prefixe_prestation
+        description: Deux premiers chiffres de PRS_NAT, utilisés pour le regroupement en postes de soins.
+      - name: code_nature_assurance
+        description: Nature d'assurance (ASU_NAT) - maladie, maternité, AT-MP...
+      - name: code_enveloppe
+        description: Type d'enveloppe ONDAM (CPT_ENV_TYP).
+      - name: code_secteur
+        description: Secteur public (1) ou privé (2) (PRS_PPU_SEC).
+      - name: code_motif_exoneration
+        description: Motif d'exonération du ticket modérateur (EXO_MTF), dont ALD.
+      - name: code_parcours_soins
+        description: Qualificatif du parcours de soins (PRS_PDS_QCP).
+      - name: taux_remboursement
+        description: Taux de remboursement appliqué (PRS_REM_TAU), en %.
+      - name: code_tranche_age
+        description: Tranche d'âge du bénéficiaire au moment des soins (AGE_BEN_SNDS).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['0', '20', '30', '40', '50', '60', '70', '80', '99']
+      - name: code_sexe
+        description: Sexe du bénéficiaire (BEN_SEX_COD).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['0', '1', '2', '9']
+      - name: code_region
+        description: Région de résidence du bénéficiaire (BEN_RES_REG, découpage 2016).
+      - name: code_c2s
+        description: Bénéficiaire de la complémentaire santé solidaire (ex-CMU-C).
+      - name: code_categorie_executant
+        description: Catégorie du professionnel ou de l'établissement exécutant (PSE_ACT_CAT).
+      - name: code_specialite_executant
+        description: Spécialité médicale de l'exécutant (PSE_SPE_SNDS).
+      - name: code_categorie_prescripteur
+        description: Catégorie du prescripteur (PSP_ACT_CAT).
+      - name: nb_actes
+        description: Dénombrement des actes (PRS_ACT_NBR).
+      - name: quantite
+        description: Quantité (PRS_ACT_QTE), par exemple nombre de boîtes.
+      - name: montant_depense
+        description: "{{ doc('montant_depense') }}"
+        data_tests:
+          - not_null:
+              config: {severity: warn}
+      - name: montant_rembourse
+        description: "{{ doc('montant_rembourse') }}"
+        data_tests:
+          - not_null:
+              config: {severity: warn}
+      - name: base_remboursement
+        description: Base de remboursement (tarif de convention) en euros (PRS_REM_BSE).
+      - name: montant_depassement
+        description: Dépassements d'honoraires en euros (PRS_DEP_MNT).
+      - name: fichier_source
+        description: Nom du fichier mensuel d'origine.
+      - name: ingere_le
+        description: Horodatage du chargement dans la zone brute.

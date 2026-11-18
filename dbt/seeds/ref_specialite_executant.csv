@@ -1,0 +1,28 @@
+code_specialite_executant,libelle_specialite_executant
+0,Non renseigne
+1,Medecine generale
+2,Anesthesiologie - reanimation
+3,Pathologie cardio-vasculaire
+4,Chirurgie
+5,Dermatologie et venerologie
+6,Radiologie
+7,Gynecologie obstetrique
+8,Gastro-enterologie et hepatologie
+9,Medecine interne
+11,Oto rhino-laryngologie
+12,Pediatrie
+13,Pneumologie
+14,Rhumatologie
+15,Ophtalmologie
+18,Stomatologie
+31,Medecine physique et de readaptation
+32,Neurologie
+33,Psychiatrie
+34,Geriatrie
+35,Nephrologie
+36,Chirurgie dentaire (specialiste o.d.f.)
+37,Anatomie-cytologie-pathologique
+38,Directeur laboratoire medecin
+42,Endocrinologie et metabolismes
+80,Sante publique et medecine sociale
+99,Valeur inconnue

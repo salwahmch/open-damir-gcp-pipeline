@@ -1,0 +1,55 @@
+# Airflow en local : une base Postgres + un conteneur « airflow standalone »
+# (api-server, scheduler, dag-processor et triggerer dans le même conteneur).
+# Suffisant pour un projet personnel ; en production on séparerait les services.
+#
+#   docker compose up --build      puis http://localhost:8080
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 5s
+      retries: 10
+    restart: unless-stopped
+
+  airflow:
+    build:
+      context: .
+      dockerfile: airflow/Dockerfile
+    command: standalone
+    user: "${AIRFLOW_UID:-50000}:0"
+    env_file: .env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+      # Usage local uniquement : pas d'écran de connexion
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS: "true"
+      GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/secrets/gcp-key.json
+      PYTHONPATH: /opt/airflow/project
+      DATA_DIR: /opt/airflow/data
+      DBT_PROJECT_DIR: /opt/airflow/dbt
+      DBT_TARGET: airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./ingestion:/opt/airflow/project/ingestion
+      - ./dbt:/opt/airflow/dbt
+      - ./data:/opt/airflow/data
+      - ./secrets:/opt/airflow/secrets:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

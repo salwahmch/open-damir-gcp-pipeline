@@ -1,0 +1,70 @@
+version: 2
+
+seeds:
+  - name: ref_prestation
+    description: >
+      Libellés des natures de prestation (PRS_NAT), générés depuis le lexique
+      officiel par `python -m ingestion.build_seeds`.
+    columns:
+      - name: code_prestation
+        data_tests: [unique, not_null]
+      - name: libelle_prestation
+        data_tests: [not_null]
+
+  - name: ref_poste_soins
+    description: >
+      Regroupement des natures de prestation en postes de soins, d'après la
+      structure de la nomenclature PRS_NAT (les 2 premiers chiffres donnent la famille).
+    columns:
+      - name: prefixe_prestation
+        data_tests: [unique, not_null]
+      - name: poste_soins
+        data_tests: [not_null]
+      - name: grand_poste
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Soins de ville', 'Établissements', 'Prestations en espèces',
+                         'Prévention', 'Autres prestations']
+
+  - name: ref_region
+    description: Régions de résidence (découpage 2016) et code ISO 3166-2 pour la cartographie.
+    columns:
+      - name: code_region
+        data_tests: [unique, not_null]
+
+  - name: ref_tranche_age
+    description: Tranches d'âge du bénéficiaire (AGE_BEN_SNDS).
+    columns:
+      - name: code_tranche_age
+        data_tests: [unique, not_null]
+
+  - name: ref_sexe
+    description: Sexe du bénéficiaire (BEN_SEX_COD).
+    columns:
+      - name: code_sexe
+        data_tests: [unique, not_null]
+
+  - name: ref_categorie_executant
+    description: Catégorie de l'exécutant (PSE_ACT_CAT).
+    columns:
+      - name: code_categorie_executant
+        data_tests: [unique, not_null]
+
+  - name: ref_specialite_executant
+    description: Spécialité médicale de l'exécutant (PSE_SPE_SNDS).
+    columns:
+      - name: code_specialite_executant
+        data_tests: [unique, not_null]
+
+  - name: ref_enveloppe
+    description: Type d'enveloppe ONDAM (CPT_ENV_TYP).
+    columns:
+      - name: code_enveloppe
+        data_tests: [unique, not_null]
+
+  - name: ref_nature_assurance
+    description: Nature d'assurance (ASU_NAT).
+    columns:
+      - name: code_nature_assurance
+        data_tests: [unique, not_null]

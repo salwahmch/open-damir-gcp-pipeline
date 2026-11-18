@@ -1,0 +1,44 @@
+prefixe_prestation,poste_soins,grand_poste
+11,Consultations,Soins de ville
+12,Visites à domicile,Soins de ville
+13,"Actes techniques médicaux (chirurgie, imagerie)",Soins de ville
+14,Soins dentaires,Soins de ville
+15,"Majorations, gardes et astreintes",Soins de ville
+16,Rémunérations forfaitaires des professionnels,Soins de ville
+17,Forfaits des centres de santé,Soins de ville
+18,Frais de déplacement des professionnels,Soins de ville
+19,"Autres honoraires, participations et franchises",Soins de ville
+21,Hospitalisation privée - séjours,Établissements
+22,Établissements médico-sociaux,Établissements
+23,"Hospitalisation - séances, forfaits techniques",Établissements
+24,Hospitalisation - autres forfaits,Établissements
+25,Fonds d'intervention régional,Établissements
+31,Auxiliaires médicaux,Soins de ville
+32,Biologie,Soins de ville
+33,Médicaments,Soins de ville
+34,Produits d'origine humaine,Soins de ville
+35,"Dispositifs médicaux (LPP, optique, audition)",Soins de ville
+41,Cures thermales,Soins de ville
+42,Transports,Soins de ville
+43,Autres prestations en nature,Autres prestations
+44,Aide sociale et dispensaires,Autres prestations
+45,Capital décès et contrôles,Autres prestations
+51,Forfaits optique (C2S),Soins de ville
+52,Forfaits dentaires (C2S),Soins de ville
+53,Forfaits C2S - autres,Soins de ville
+54,Forfaits audioprothèse (C2S),Soins de ville
+60,Indemnités journalières - carence,Prestations en espèces
+61,Indemnités journalières maladie et AT-MP,Prestations en espèces
+62,"Maternité, paternité et allocations",Prestations en espèces
+71,Pensions d'invalidité,Prestations en espèces
+81,Rentes AT-MP,Prestations en espèces
+82,Capitaux AT-MP,Prestations en espèces
+91,Prestations complémentaires diverses,Autres prestations
+92,Prévention - vaccins et dépistages,Prévention
+93,Prévention - dépistage organisé,Prévention
+94,Prévention bucco-dentaire,Prévention
+95,Examens de santé et prévention,Prévention
+96,Prévention - autres,Prévention
+97,Action sanitaire et sociale,Autres prestations
+98,Codes propres aux régimes spéciaux,Autres prestations
+99,Aide ménagère et action sociale,Autres prestations

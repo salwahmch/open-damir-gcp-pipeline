@@ -1,0 +1,54 @@
+name: open_damir
+version: "1.0.0"
+config-version: 2
+profile: open_damir
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+analysis-paths: ["analyses"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  open_damir:
+    +persist_docs:
+      relation: true
+      columns: true
+    staging:
+      +schema: damir_staging
+      +materialized: view
+    intermediate:
+      +schema: damir_staging
+      +materialized: ephemeral
+    marts:
+      +schema: damir_marts
+      +materialized: table
+
+seeds:
+  open_damir:
+    +schema: damir_ref
+    +quote_columns: false
+    ref_prestation:
+      +column_types: {code_prestation: string, libelle_prestation: string}
+    ref_poste_soins:
+      +column_types: {prefixe_prestation: string}
+    ref_tranche_age:
+      +column_types: {code_tranche_age: string, ordre_tri: int64}
+    ref_sexe:
+      +column_types: {code_sexe: string}
+    ref_region:
+      +column_types: {code_region: string, code_iso_3166_2: string, est_outre_mer: bool}
+    ref_categorie_executant:
+      +column_types: {code_categorie_executant: string}
+    ref_specialite_executant:
+      +column_types: {code_specialite_executant: string}
+    ref_enveloppe:
+      +column_types: {code_enveloppe: string}
+    ref_nature_assurance:
+      +column_types: {code_nature_assurance: string}
+
+data_tests:
+  open_damir:
+    +store_failures: false

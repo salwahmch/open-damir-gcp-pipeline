@@ -1,0 +1,16 @@
+[project]
+name = "open-damir-gcp-pipeline"
+version = "1.0.0"
+description = "Pipeline de données santé Open DAMIR sur Google Cloud (Python, GCS, BigQuery, dbt, Airflow)"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+extend-exclude = ["dbt/dbt_packages", "dbt/target"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

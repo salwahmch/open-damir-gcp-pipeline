@@ -1,0 +1,12 @@
+code_categorie_executant,libelle_categorie_executant
+0,Établissement
+1,Médecin
+2,Fournisseur
+3,Laboratoire
+4,Dentiste
+5,Sage-femme
+6,Infirmier
+7,Masseur-kinésithérapeute
+8,Pédicure-podologue
+9,Orthoptiste - orthophoniste
+99,Sans objet
