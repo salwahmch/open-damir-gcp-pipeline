@@ -3,12 +3,25 @@
     Passe de plusieurs millions de lignes par mois à quelques
     centaines de milliers.
 
-    Incrémental en insert_overwrite : à chaque exécution, seuls les mois
-    (re)chargés depuis la dernière exécution sont recalculés, et leur
+    Mode standard : incrémental en insert_overwrite. À chaque exécution, seuls
+    les mois (re)chargés depuis la dernière exécution sont recalculés, et leur
     partition est remplacée entièrement. Rejouer un mois ne crée donc jamais
     de doublons.
+
+    Mode sandbox (BQ_SANDBOX=true) : pas de DML ni de partition datée (voir
+    macros/sandbox.sql). La table est recréée en entier à chaque exécution
+    (CREATE OR REPLACE TABLE), ce qui reste rapide sur quelques mois, et
+    clusterisée par mois de traitement.
 #}
 
+{% if is_sandbox() %}
+{{
+    config(
+        materialized='table',
+        cluster_by=['mois_traitement', 'prefixe_prestation', 'code_region']
+    )
+}}
+{% else %}
 {{
     config(
         materialized='incremental',
@@ -18,6 +31,7 @@
         on_schema_change='append_new_columns'
     )
 }}
+{% endif %}
 
 with prestations as (
 

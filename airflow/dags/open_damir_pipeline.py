@@ -7,7 +7,9 @@ de traitement M (avec quelques mois de décalage). Ce DAG :
 1. détermine le ou les mois à traiter (paramètre `months`, sinon mois logique - `lag_months`) ;
 2. pour chaque mois, en parallèle (*dynamic task mapping*) : télécharge le CSV,
    le convertit en Parquet, dépose les fichiers dans Cloud Storage puis charge la
-   partition BigQuery correspondante (rejouable sans doublon) ;
+   partition BigQuery correspondante (rejouable sans doublon). En mode sandbox
+   (`BQ_SANDBOX=true`, sans compte de facturation), le dépôt dans Cloud Storage est
+   sauté et le Parquet local est chargé dans la table du mois `prestations_AAAAMM` ;
 3. lance dbt : `deps` → `seed` → `run` → `test` → `docs generate`.
 
 Déclenchement manuel avec des mois précis : *Trigger DAG w/ config*, par exemple
@@ -37,7 +39,7 @@ def dbt_command(cmd: str) -> str:
 
 @dag(
     dag_id="open_damir_pipeline",
-    description="Open DAMIR : ingestion Python -> GCS -> BigQuery, puis transformations dbt",
+    description="Open DAMIR : ingestion Python -> (GCS) -> BigQuery, puis transformations dbt",
     schedule="0 6 15 * *",  # le 15 de chaque mois à 6h UTC
     start_date=datetime(2026, 1, 1),
     catchup=False,
@@ -97,7 +99,11 @@ def open_damir_pipeline():
         from ingestion.config import get_settings
         from ingestion.months import parse_month
 
-        uris = step_upload(parse_month(month), get_settings())
+        settings = get_settings()
+        if settings.sandbox:
+            log.info("Mode sandbox : pas de Cloud Storage, le chargement part du fichier local")
+            return month
+        uris = step_upload(parse_month(month), settings)
         log.info("Fichiers déposés : %s", uris)
         return month
 

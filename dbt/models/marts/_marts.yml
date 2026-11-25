@@ -5,8 +5,9 @@ models:
     description: >
       Fait agrégé des dépenses de santé par mois de traitement et par combinaison
       d'axes (prestation, enveloppe, nature d'assurance, secteur, région, âge,
-      sexe, catégorie d'exécutant). Table incrémentale partitionnée par mois :
-      seuls les mois rechargés sont recalculés (insert_overwrite).
+      sexe, catégorie d'exécutant). Mode standard : table incrémentale partitionnée
+      par mois, seuls les mois rechargés sont recalculés (insert_overwrite).
+      Mode sandbox : table recréée en entier à chaque exécution.
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
@@ -22,7 +23,7 @@ models:
               - code_categorie_executant
     columns:
       - name: mois_traitement
-        description: Mois de traitement (partition).
+        description: Mois de traitement (partition en mode standard).
         data_tests: [not_null]
       - name: code_prestation
         description: "{{ doc('code_prestation') }}"

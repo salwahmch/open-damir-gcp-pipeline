@@ -3,25 +3,30 @@ version: 2
 sources:
   - name: damir_raw
     description: >
-      Zone brute alimentée par le script Python d'ingestion (Parquet déposé dans
-      Cloud Storage puis chargé dans BigQuery). Toutes les colonnes métier sont en
-      STRING, telles que publiées par l'Assurance Maladie.
+      Zone brute alimentée par le script Python d'ingestion. Toutes les colonnes
+      métier sont en STRING, telles que publiées par l'Assurance Maladie. En mode
+      standard, le Parquet passe par Cloud Storage et chaque mois remplace sa
+      partition de la table prestations ; en mode sandbox (BQ_SANDBOX=true), il est
+      chargé depuis le poste dans une table par mois (prestations_AAAAMM), lue ici
+      avec la table générique prestations_*.
     database: "{{ env_var('GCP_PROJECT_ID') }}"
     schema: damir_raw
     tables:
       - name: prestations
+        identifier: "{{ 'prestations_*' if env_var('BQ_SANDBOX', 'true') | trim | lower in ['true', '1', 'yes', 'oui', 'on'] else 'prestations' }}"
         description: >
           Open DAMIR, base complète interrégimes : une ligne par combinaison
           d'axes d'analyse (prestation, bénéficiaire, professionnel...) et par mois
-          de traitement. Table partitionnée par mois (_flx_month) et clusterisée
-          par PRS_NAT et BEN_RES_REG.
+          de traitement. Mode standard : table partitionnée par mois (_flx_month).
+          Mode sandbox : une table par mois. Dans les deux cas, clusterisée par
+          PRS_NAT et BEN_RES_REG.
         config:
           loaded_at_field: _ingested_at
           freshness:
             warn_after: {count: 45, period: day}
         columns:
           - name: _flx_month
-            description: Mois de traitement (1er jour du mois), clé de partition.
+            description: Mois de traitement (1er jour du mois), clé de partition en mode standard.
             data_tests:
               - not_null
           - name: PRS_NAT

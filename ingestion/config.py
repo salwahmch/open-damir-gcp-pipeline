@@ -22,6 +22,14 @@ DEFAULT_URL_TEMPLATE = (
 )
 
 
+def env_flag(name: str, default: bool) -> bool:
+    """Lit un booléen d'environnement (true/false, 1/0, oui/non)."""
+    value = os.getenv(name)
+    if value is None or value.strip() == "":
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "oui", "on"}
+
+
 @dataclass(frozen=True)
 class Settings:
     project_id: str
@@ -31,6 +39,9 @@ class Settings:
     location: str
     url_template: str
     data_dir: Path
+    # Mode « BigQuery sandbox » : projet sans compte de facturation. Pas de Cloud
+    # Storage ni de DML ; chaque mois est chargé depuis le poste dans sa propre table.
+    sandbox: bool = True
 
     @property
     def raw_table_id(self) -> str:
@@ -46,6 +57,7 @@ def get_settings() -> Settings:
         location=os.getenv("BQ_LOCATION", "EU"),
         url_template=os.getenv("DAMIR_URL_TEMPLATE", DEFAULT_URL_TEMPLATE),
         data_dir=Path(os.getenv("DATA_DIR", "data")).resolve(),
+        sandbox=env_flag("BQ_SANDBOX", True),
     )
 
 

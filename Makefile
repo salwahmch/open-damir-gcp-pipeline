@@ -1,4 +1,4 @@
-.PHONY: help install test lint gcp-setup ingest-sample ingest dbt-build dbt-docs airflow-up airflow-down
+.PHONY: help install test lint gcp-setup ingest-sample ingest ingest-3-months dbt-build dbt-docs airflow-up airflow-down
 
 MONTH ?= 2024-01
 
@@ -14,7 +14,7 @@ lint:  ## Vérifie le style du code Python
 test:  ## Lance les tests unitaires
 	pytest -q tests/test_ingestion.py
 
-gcp-setup:  ## Crée bucket, datasets et compte de service (une fois)
+gcp-setup:  ## Crée datasets, compte de service (et bucket hors sandbox), une fois
 	bash infra/setup_gcp.sh
 
 ingest-sample:  ## Ingestion d'un mois limitée à 200 000 lignes (MONTH=AAAA-MM)
@@ -22,6 +22,11 @@ ingest-sample:  ## Ingestion d'un mois limitée à 200 000 lignes (MONTH=AAAA-MM
 
 ingest:  ## Ingestion complète d'un mois (MONTH=AAAA-MM)
 	python -m ingestion run --month $(MONTH)
+
+FROM ?= 2024-01
+TO ?= 2024-03
+ingest-3-months:  ## Ingestion complète de FROM à TO (par défaut 2024-01 à 2024-03)
+	python -m ingestion run --from $(FROM) --to $(TO)
 
 dbt-build:  ## dbt deps + seed + run + test
 	cd dbt && dbt deps --profiles-dir . && dbt seed --profiles-dir . && dbt run --profiles-dir . && dbt test --profiles-dir .

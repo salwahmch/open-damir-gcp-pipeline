@@ -7,6 +7,9 @@ Exemples :
     python -m ingestion run --month 2024-01 --local-file ~/Téléchargements/A202401.csv.gz
     python -m ingestion run --month 2024-01 --max-rows 200000   # mode test, peu coûteux
     python -m ingestion inspect data/landing/A202401.csv.gz
+
+En mode sandbox (BQ_SANDBOX=true, par défaut) l'étape upload est ignorée et
+l'étape load envoie directement le Parquet local dans BigQuery.
 """
 
 from __future__ import annotations
@@ -61,6 +64,9 @@ def step_transform(month: date, settings: Settings, max_rows: int | None = None)
 def step_upload(month: date, settings: Settings, skip_landing: bool = False) -> dict[str, str]:
     from .gcp import landing_blob, parquet_blob, upload_file
 
+    if settings.sandbox:
+        log.info("Mode sandbox : pas de Cloud Storage, étape upload ignorée")
+        return {}
     require(settings, "project_id", "bucket")
     uris = {}
     if not skip_landing:
@@ -73,8 +79,13 @@ def step_upload(month: date, settings: Settings, skip_landing: bool = False) -> 
 
 
 def step_load(month: date, settings: Settings) -> int:
-    from .gcp import load_month, parquet_blob
+    from .gcp import load_month, load_month_from_file, parquet_blob
 
+    if settings.sandbox:
+        require(settings, "project_id")
+        return load_month_from_file(settings.project_id, settings.raw_dataset,
+                                    settings.raw_table, settings.location,
+                                    parquet_path(settings, month), month)
     require(settings, "project_id", "bucket")
     uri = f"gs://{settings.bucket}/{parquet_blob(month)}"
     return load_month(settings.project_id, settings.raw_dataset, settings.raw_table,
@@ -92,7 +103,7 @@ def run(months: list[date], steps: list[str], *, local_file: Path | None = None,
             res["landing_file"] = str(step_download(month, settings, local_file))
         if "transform" in steps:
             res["parquet_file"] = str(step_transform(month, settings, max_rows))
-        if "upload" in steps:
+        if "upload" in steps and not settings.sandbox:
             res["gcs"] = step_upload(month, settings, skip_landing)
         if "load" in steps:
             res["rows_loaded"] = step_load(month, settings)
@@ -101,7 +112,7 @@ def run(months: list[date], steps: list[str], *, local_file: Path | None = None,
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(prog="ingestion", description="Ingestion Open DAMIR -> GCP")
+    parser = argparse.ArgumentParser(prog="ingestion", description="Ingestion Open DAMIR -> BigQuery")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p_run = sub.add_parser("run", help="Exécuter le pipeline d'ingestion")

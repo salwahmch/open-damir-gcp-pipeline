@@ -9,7 +9,7 @@ Couches :
 
 | Couche | Dataset BigQuery | Rôle |
 |---|---|---|
-| Sources | `damir_raw` | Fichiers chargés par Python, colonnes en texte, partition mensuelle |
+| Sources | `damir_raw` | Fichiers chargés par Python, colonnes en texte, une table par mois (sandbox) ou une partition par mois (standard) |
 | Seeds | `damir_ref` | Libellés des nomenclatures (lexique officiel) et regroupement en postes de soins |
 | Staging | `damir_staging` | Renommage, typage, nettoyage (vue) |
 | Marts | `damir_marts` | Fait agrégé incrémental et tables d'analyse pour Looker Studio |

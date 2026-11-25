@@ -111,3 +111,66 @@ def test_missing_kept_column_is_null(tmp_path):
     dest = tmp_path / "p.parquet"
     csv_to_parquet(path, dest, date(2024, 1, 1))
     assert pq.read_table(dest).to_pydict()["PSP_ACT_CAT"] == [None]
+
+
+# --- Mode sandbox (BigQuery sans compte de facturation) ---------------------
+
+def test_sandbox_flag(monkeypatch):
+    from ingestion.config import get_settings
+
+    monkeypatch.delenv("BQ_SANDBOX", raising=False)
+    assert get_settings().sandbox is True  # par défaut : sandbox
+    for value, expected in [("false", False), ("0", False), ("True", True), ("oui", True)]:
+        monkeypatch.setenv("BQ_SANDBOX", value)
+        assert get_settings().sandbox is expected
+
+
+def test_shard_table_name():
+    from ingestion.gcp import shard_table
+
+    assert shard_table("prestations", date(2024, 3, 1)) == "prestations_202403"
+
+
+def test_sandbox_run_skips_gcs_and_loads_local_parquet(sample, tmp_path, monkeypatch):
+    """En sandbox : pas d'upload GCS ni de bucket requis, chargement du Parquet local."""
+    import ingestion.gcp as gcp
+    from ingestion.cli import parquet_path, run
+    from ingestion.config import get_settings
+
+    monkeypatch.setenv("BQ_SANDBOX", "true")
+    monkeypatch.setenv("GCP_PROJECT_ID", "projet-test")
+    monkeypatch.setenv("GCS_BUCKET", "")
+    monkeypatch.setenv("DATA_DIR", str(tmp_path / "data"))
+
+    def no_upload(*args, **kwargs):
+        raise AssertionError("aucun envoi vers Cloud Storage en mode sandbox")
+
+    calls = []
+
+    def fake_load(project, dataset, table, location, local, month):
+        calls.append((project, dataset, table, local, month))
+        return 3
+
+    monkeypatch.setattr(gcp, "upload_file", no_upload)
+    monkeypatch.setattr(gcp, "load_month_from_file", fake_load)
+
+    results = run([date(2024, 1, 1)], ["download", "transform", "upload", "load"],
+                  local_file=sample)
+    assert results[0]["rows_loaded"] == 3
+    assert "gcs" not in results[0]
+    project, dataset, table, local, month = calls[0]
+    assert (project, dataset, table, month) == ("projet-test", "damir_raw", "prestations",
+                                                date(2024, 1, 1))
+    assert local == parquet_path(get_settings(), date(2024, 1, 1))
+    assert local.exists()
+
+
+def test_standard_mode_requires_bucket(monkeypatch):
+    from ingestion.cli import step_load
+    from ingestion.config import get_settings
+
+    monkeypatch.setenv("BQ_SANDBOX", "false")
+    monkeypatch.setenv("GCP_PROJECT_ID", "projet-test")
+    monkeypatch.setenv("GCS_BUCKET", "")
+    with pytest.raises(SystemExit, match="GCS_BUCKET"):
+        step_load(date(2024, 1, 1), get_settings())
